@@ -5,4 +5,8 @@ SQL server:
     sqlcmd: 
         sqlcmd -S localhost -U akshayguru -P test1234 -Q "SELECT @@VERSION" 
 
-
+MySQL:
+    host = 'localhost'
+    user = 'root'
+    password = 'ArSql#2022'
+    database = 'sqlshackmergedemo'
