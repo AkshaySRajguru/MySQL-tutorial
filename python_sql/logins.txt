@@ -1,0 +1,8 @@
+SQL server: 
+    Use SQL Server Authentication for pyodbc connection
+        login name: akshayguru
+        pwd: test1234
+    sqlcmd: 
+        sqlcmd -S localhost -U akshayguru -P test1234 -Q "SELECT @@VERSION" 
+
+
