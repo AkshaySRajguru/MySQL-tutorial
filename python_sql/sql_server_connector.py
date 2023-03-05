@@ -2,6 +2,7 @@
 
 import pyodbc
 import pandas as pd
+import sqlalchemy as db
 
 # Set the connection properties
 server = 'DESKTOP-BUAR5NH'
@@ -14,6 +15,9 @@ driver = '{ODBC Driver 18 for SQL Server}'
 # Connect to the database
 conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password};TrustServerCertificate=yes"
 cnxn = pyodbc.connect(conn_str)
+# Create the pyodbc engine with sqlalchemy
+engine = db.create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}")
+
 
 # Create a cursor object to execute SQL statements
 cursor = cnxn.cursor()
@@ -31,8 +35,8 @@ for row in cursor:
 (5, 'laptop', Decimal('880.00'))
 (6, 'charger', Decimal('10.00'))
 """
-# use pandas
-df = pd.read_sql_query(query, cnxn)
+# use pandas with sqlalchemy
+df = pd.read_sql_query(query, engine)
 print("\n using pandas:")
 print(df)
 """
