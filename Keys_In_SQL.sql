@@ -1,3 +1,33 @@
+/*
+In SQL, a primary key is a column or set of columns that uniquely identify each row in a table. 
+The primary key is used to enforce data integrity rules and ensure that there are no duplicate rows in the table. 
+A primary key can be defined when creating a table or added later using an ALTER TABLE statement.
+
+A foreign key is a column or set of columns in one table that refers to the primary key of another table. 
+The purpose of a foreign key is to enforce referential integrity between tables, 
+which means that a record in one table can only reference a record in another table if that record exists. 
+This helps to maintain data consistency and prevent orphaned records.
+
+When a table is created, a foreign key can be defined by adding a CONSTRAINT clause to 
+the CREATE TABLE statement. The CONSTRAINT clause specifies the name of the foreign key, 
+the name of the referenced table, and the column or columns in the referenced table that 
+the foreign key refers to. Alternatively, a foreign key can be added to an existing table 
+using an ALTER TABLE statement.
+
+https://www.gleek.io/blog/er-model-cardinality
+https://www.gleek.io/blog/uml-vs-erd
+https://www.gleek.io/blog/crows-foot-notation
+
+A database is the overall collection of data, 
+a schema is a logical container for database objects within a database, 
+and a table is an object within a schema that contains the actual data.
+e.g.
+library.catelog.books,
+APP_SOCS.PARM_SOCS.JOB_METADATA,
+Company.HR.Empleoyee,
+Company.Sales.SalesTarget
+*/
+
 -- create projects and members mapping to understand PRIMARY and FOREIGN keys
 create database the_office;
 
