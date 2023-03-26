@@ -41,3 +41,64 @@ left join orders as o using(customerNumber) where o.orderNumber is null; -- 24 r
 -- validate for 1 customer with no order :
 select * from customers where customerNumber=125;
 select * from orders where customerNumber=125; -- null
+
+
+-- relation between 3 tables: payments, customers and employee
+-- Each customer can have zero or one employee while each employee can have zero or more cutomers.
+-- Each payment must have one customer while each customer can have zero or more payments.
+
+select * from employees; --  23
+select * from customers; -- 122
+select * from payments; -- 273
+select lastName, 
+    firstName, 
+    customerName, 
+    checkNumber, 
+    amount from employees as e
+left join customers as c 
+on e.employeeNumber = c.salesRepEmployeeNumber
+left join payments as p
+using(customerNumber)
+ORDER BY 
+    customerName, 
+    checkNumber; -- 283
+
+-- Condition in WHERE clause vs. ON clause
+SELECT 
+    o.orderNumber, 
+    customerNumber, 
+    productCode
+FROM
+    orders o
+LEFT JOIN orderDetails as od
+    on o.orderNumber = od.orderNumber 
+WHERE
+    o.orderNumber = 10123; -- 4
+    
+SELECT 
+    o.orderNumber, 
+    customerNumber, 
+    productCode
+FROM
+    orders o
+LEFT JOIN orderDetails as od
+    on o.orderNumber = od.orderNumber and o.orderNumber = 10123; -- 329
+
+SELECT 
+    o.orderNumber, 
+    customerNumber, 
+    productCode
+FROM
+    orders o
+inner JOIN orderDetails as od
+    on o.orderNumber = od.orderNumber and o.orderNumber = 10123; -- 4
+    
+SELECT 
+    o.orderNumber, 
+    customerNumber, 
+    productCode
+FROM
+    orders o
+inner JOIN orderDetails as od
+    on o.orderNumber = od.orderNumber
+where o.orderNumber = 10123; -- 4
